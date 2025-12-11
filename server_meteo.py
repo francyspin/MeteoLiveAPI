@@ -2,13 +2,16 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 from datetime import datetime
+import threading
+import time
+import os
 
 app = Flask(__name__)
 CORS(app)  # Abilita le richieste dal browser (HTML file)
 
 # --- CONFIGURAZIONE API ---
 API_KEY = "84ff7bc9c3f245da7c50835f162bd6f3"
-BASE_URL = "http://api.openweathermap.org/data/2.5"
+BASE_URL = "https://meteo-live-backend.onrender.com"
 
 @app.route('/')
 def home():
@@ -80,9 +83,19 @@ def meteo():
     except Exception as e:
         return jsonify({"errore": "Errore interno del server"}), 500
 
+def keep_alive():
+    while True:
+        time.sleep(900)  # 15 minuti
+        try:
+            requests.get(f"https://{os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'localhost:5000')}/")
+        except:
+            pass
+
 if __name__ == '__main__':
+    # Avvia ping in background
+    threading.Thread(target=keep_alive, daemon=True).start()
+    
     print("-------------------------------------------------")
-    print("🚀 SERVER METEO AVVIATO SU http://localhost:5000")
-    print("   Lascia questa finestra aperta.")
+    print("🚀 SERVER METEO AVVIATO")
     print("-------------------------------------------------")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
