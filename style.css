@@ -105,6 +105,7 @@ body {
 .weather-wrapper {
     display: flex;
     height: calc(100% - 60px);
+    min-height: 0;
 }
 
 /* Pannello sinistro - Gradiente vivace */
@@ -498,48 +499,157 @@ input:focus + .suggestions-dropdown {
     to { transform: translate(-50%, 0); opacity: 1; }
 }
 
-/* Responsive */
+/* Responsive Mobile */
 @media (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
     .container {
         border-radius: 20px;
         max-width: 100%;
-        height: 90vh;
+        height: calc(100vh - 20px);
+        margin: 0;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 
     .weather-wrapper {
         flex-direction: column;
-    }
-
-    .left-panel,
-    .right-panel {
-        padding: 20px 15px;
+        height: calc(100vh - 50px);
     }
 
     .app-header {
-        padding: 12px 15px;
+        padding: 8px 15px;
+        height: 50px;
     }
 
     .logo h1 {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+
+    .left-panel {
+        flex: none;
+        height: 60vh;
+        padding: 15px;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    .search-wrapper {
+        margin-bottom: 10px;
+    }
+
+    .main-info {
+        flex: none;
+        justify-content: flex-start;
+        gap: 8px;
     }
 
     .temp {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        margin: 5px 0;
     }
 
     .main-icon {
         font-size: 2.5rem;
+        margin-bottom: 8px;
     }
 
-    .search-wrapper {
-        flex-direction: column;
+    .city-name {
+        font-size: 1rem;
+        margin-bottom: 4px;
     }
 
-    .search-btn {
-        width: 100%;
+    .description {
+        font-size: 0.8rem;
+    }
+
+    .right-panel {
+        flex: none;
+        height: 40vh;
+        padding: 15px;
+        gap: 12px;
+        overflow-y: auto;
     }
 
     .details-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        opacity: 1 !important;
+        animation: none !important;
+    }
+
+    .detail-card {
+        padding: 12px 10px;
+        gap: 10px;
+        min-height: 60px;
+    }
+
+    .detail-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .detail-text span {
+        font-size: 0.7rem;
+        font-weight: 800;
+    }
+
+    .detail-text strong {
+        font-size: 1.1rem;
+        font-weight: 900;
+    }
+
+    .forecast-section {
+        margin-top: 10px;
+        opacity: 1 !important;
+        animation: none !important;
+    }
+
+    .forecast-title {
+        font-size: 0.8rem;
+        margin: 10px 0 8px 0;
+    }
+
+    .forecast-container {
+        gap: 6px;
+    }
+
+    .forecast-item {
+        min-width: 50px;
+        padding: 8px 6px;
+    }
+
+    .forecast-time {
+        font-size: 0.65rem;
+    }
+
+    .forecast-icon {
+        font-size: 1.1rem;
+        margin: 4px 0;
+    }
+
+    .forecast-temp {
+        font-size: 0.8rem;
+    }
+
+    .welcome-msg i {
+        font-size: 2rem;
+    }
+
+    .welcome-msg p {
+        font-size: 0.8rem;
+    }
+
+    .error-msg {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        transform: none;
+        font-size: 0.8rem;
+        padding: 10px 15px;
     }
 }

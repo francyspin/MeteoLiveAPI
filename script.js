@@ -1,4 +1,4 @@
-const API_URL = "https://meteo-live-backend.onrender.com/meteo";
+const API_URL = "http://127.0.0.1:5000/meteo";
 
 const icons = {
     "01d": "☀️", "01n": "🌙", "02d": "⛅", "02n": "☁️",
