@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeteoLive Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particelle animate -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="app-header">
+            <div class="logo">
+                <i class="fas fa-cloud-sun"></i>
+                <h1>Meteo<span>Live</span></h1>
+            </div>
+        </div>
+
+        <div class="weather-wrapper">
+            <!-- Pannello Sinistro -->
+            <div class="left-panel">
+                <div class="search-wrapper">
+                    <div class="input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="cityInput" placeholder="Cerca città..." value="Roma">
+                    </div>
+                    <button class="search-btn" onclick="getWeather()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="loader-wrapper" id="loaderWrapper">
+                    <div class="loader"></div>
+                </div>
+
+                <div id="mainInfo" class="main-info" style="display: none;">
+                    <div class="main-icon" id="icon">☀️</div>
+                    <div class="temp" id="temp">--°</div>
+                    <div class="city-name" id="city">--</div>
+                    <div class="description" id="desc">--</div>
+                </div>
+            </div>
+
+            <!-- Pannello Destro -->
+            <div class="right-panel">
+                <div id="welcomeMsg" class="welcome-msg">
+                    <i class="fas fa-cloud-sun-rain"></i>
+                    <p>Inserisci una città per visualizzare<br>il meteo dettagliato in tempo reale</p>
+                </div>
+
+                <div id="weatherDetails" style="display: none;">
+                    <div class="details-grid">
+                        <div class="detail-card">
+                            <div class="detail-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <div class="detail-text">
+                                <span>Percepita</span>
+                                <strong id="feels">--°</strong>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="detail-text">
+                                <span>Umidità</span>
+                                <strong id="humidity">--%</strong>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <div class="detail-text">
+                                <span>Vento</span>
+                                <strong id="wind">-- km/h</strong>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="detail-text">
+                                <span>Aggiornato</span>
+                                <strong id="time">--:--</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="forecast-section">
+                        <div class="forecast-title">📅 Prossime Ore</div>
+                        <div class="forecast-container" id="forecast"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="errorMsg" class="error-msg"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
